@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cutback</title>
+
+    <script>
+      function onPageLoad() {
+        if (!navigator.onLine) return;
+
+        window.location.href =
+          "https://static.cutback.video/app/browser/index.html"
+      }
+
+      function updateOnlineStatus() {
+        const statusElement = document.getElementById("no-internet-message");
+        if (navigator.onLine) {
+          statusElement.style.display = "none";
+          onPageLoad();
+        } else {
+          statusElement.style.display = "flex"; // Use flex to center the text vertically and horizontally.
+        }
+      }
+
+      window.addEventListener("load", updateOnlineStatus);
+      window.addEventListener("online", updateOnlineStatus);
+      window.addEventListener("offline", updateOnlineStatus);
+    </script>
+
+    <style>
+      #no-internet-message {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #0a0a0a;
+        color: #fefefe; /* Deep purple text for contrast */
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 2em;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+
+  <body onLoad="onPageLoad()">
+    <div id="no-internet-message">
+      ⚠️ 인터넷이 연결되어있지 않아요!
+      <br />
+      컷백을 이용하기 위해서는 인터넷 연결이 필요해요
+    </div>
+  </body>
+</html>
